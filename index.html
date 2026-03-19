@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RXScrapper · utility hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #1E88E5;
+            --deep-blue: #0a2a44;
+            --bg-black: #050507;
+            --card-bg: #0d1117;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --accent-glow: rgba(30, 136, 229, 0.5);
+        }
+
+        /* Reset & Base */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: var(--bg-black);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 15px var(--accent-glow)); }
+            50% { transform: translateY(-8px) scale(1.02); filter: drop-shadow(0 0 30px var(--accent-glow)); }
+        }
+
+        /* Navigation */
+        nav {
+            width: 100%;
+            max-width: 500px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .nav-logo img { 
+            width: 32px; 
+            height: auto; 
+            border-radius: 6px;
+        }
+
+        .discord-btn-top {
+            background: rgba(88, 101, 242, 0.15);
+            border: 1px solid #5865F2;
+            color: #5865F2;
+            padding: 8px 16px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .discord-btn-top:hover {
+            background: #5865F2;
+            color: white;
+        }
+
+        /* Main Hero Section */
+        .hero {
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            padding: 20px;
+            margin-top: 5px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .main-logo-png {
+            width: 160px;
+            max-width: 50%;
+            margin: 0 auto 10px;
+            display: block;
+            animation: logoFloat 4s ease-in-out infinite;
+            border-radius: 24px;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.4rem;
+            margin: 5px 0 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        h1 span { 
+            color: var(--neon-blue); 
+            text-shadow: 0 0 15px var(--accent-glow); 
+        }
+
+        .tagline {
+            font-size: 1.15rem;
+            color: #e0e0e0;
+            margin: 15px 0 30px;
+            line-height: 1.4;
+        }
+
+        .tagline span { color: var(--neon-blue); font-weight: 600; }
+
+        /* Buttons Container */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            padding: 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            transition: var(--transition);
+            width: 100%;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-github { 
+            background: #131722; 
+            border: 1px solid #3b4049; 
+        }
+        .btn-github i { color: #fff; }
+
+        .btn-direct { 
+            background: var(--neon-blue); 
+            box-shadow: 0 0 20px rgba(30, 136, 229, 0.4);
+            border: 1px solid #64b5f6;
+        }
+
+        .btn:active { transform: scale(0.96); }
+
+        .btn-content { text-align: left; line-height: 1.2; }
+        .btn-content small { display: block; font-size: 0.7rem; font-weight: 300; opacity: 0.8; }
+
+        /* Feature Cards (new section for spotify downloader) */
+        .features-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            margin: 60px 0 30px;
+            text-align: center;
+        }
+        .features-title span { color: var(--neon-blue); }
+
+        .feature-card {
+            width: calc(100% - 40px);
+            max-width: 400px;
+            background: var(--card-bg);
+            border-radius: 28px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.03);
+            animation: fadeInUp 1s ease-out;
+        }
+        .feature-card h3 {
+            color: var(--neon-blue);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .feature-card p { color: #b0b0b0; font-size: 0.95rem; margin-bottom: 20px; }
+        .feature-card img {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+            border: 1px solid #1c2128;
+        }
+
+        /* nueva sección dedicada a RXScrapper Spotify Downloader */
+        .spotify-presentation {
+            width: calc(100% - 40px);
+            max-width: 400px;
+            background: linear-gradient(145deg, #0b1a2a, #081016);
+            border-radius: 32px;
+            padding: 30px 25px;
+            margin: 20px 0 10px;
+            border: 1px solid #1e3a5f;
+            box-shadow: 0 15px 25px -10px #0a2a44;
+        }
+        .spotify-presentation h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin: 10px 0 10px;
+            color: white;
+        }
+        .spotify-presentation h2 span {
+            color: var(--neon-blue);
+        }
+        .spotify-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #1DB954;
+            color: black;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 5px 0 15px;
+        }
+        .spotify-desc {
+            font-size: 1rem;
+            color: #ccc;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        .github-repo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #171515;
+            border: 1px solid #333;
+            padding: 12px 28px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .github-repo-btn:hover {
+            background: #2b2b2b;
+            transform: scale(1.03);
+        }
+
+        /* VirusTotal */
+        .security-badge {
+            width: calc(100% - 40px);
+            max-width: 400px;
+            background: linear-gradient(145deg, #0d1117, #080a0f);
+            padding: 30px;
+            border-radius: 24px;
+            text-align: center;
+            margin: 40px 0;
+            border: 1px dotted rgba(30,136,229,0.3);
+        }
+        .vt-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #0052ff;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            width: 100%;
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid #111;
+        }
+        .social-link {
+            color: #5865F2;
+            font-size: 2rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .legal-links { margin-top: 15px; opacity: 0.5; font-size: 0.75rem; }
+        .legal-links a { color: white; text-decoration: none; margin: 0 10px; }
+
+        /* eliminado el status-badge (próximamente) */
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="nav-logo">
+            <img src="https://i.ibb.co/9mCB6FbV/20260319-023630.png" alt="RXScrapper logo">
+            <span>RXSCRAPPER</span>
+        </a>
+        
+    </nav>
+
+    
+    <div class="hero">
+        <img src="https://i.ibb.co/chSvm3g8/IMG-20260319-011601.jpg" alt="RXScrapper" class="main-logo-png">
+        
+        <!-- H1 actualizado con RXScrapper -->
+        <h1>RX<span>SCRAPPER</span></h1>
+        
+        <p class="tagline">tu caja de herramientas definitiva<br><span>libre · rápida · sin límites</span></p>
+
+        <div class="cta-container">
+            <!-- Solo dos botones: Github (conserva el estilo pero redirige a github) y Descarga Directa (azul) -->
+            <a href="https://github.com/RXxsk/RXScrapper" class="btn btn-github" target="_blank">
+                <i class="fa-brands fa-github" style="font-size: 1.5rem;"></i>
+                <div class="btn-content">
+                    <small>repositorio oficial</small>
+                    GITHUB
+                </div>
+            </a>
+            
+            <a href="#" class="btn btn-direct">
+                <i class="fa-solid fa-download" style="font-size: 1.5rem;"></i>
+                <div class="btn-content">
+                    <small>instalador directo</small>
+                    DESCARGA DIRECTA
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- NUEVA SECCIÓN: presentación del programa para descargar música de Spotify (RXScrapper) -->
+    <div class="spotify-presentation">
+        <div class="spotify-badge">
+            <i class="fa-brands fa-spotify"></i> Spotify Downloader
+        </div>
+        <h2><span>RX</span>Scrapper · Music</h2>
+        <p class="spotify-desc">
+            La herramienta que vive en GitHub: extrae música de Spotify en calidad original. 
+            Sin bloatware, sin límites. Código abierto y verificable.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <a class="github-repo-btn" target="_blank">
+                <i class="fa-brands fa-github"></i>gh repo clone RXxsk/RXScrapper
+            </a>
+            <a href="https://github.com/RXxsk/RXScrapper/blob/main/README.md" class="github-repo-btn" style="background: transparent; border: 1px solid #1E88E5; color: #1E88E5;">
+                <i class="fa-regular fa-circle-question"></i> Cómo usar
+            </a>
+        </div>
+        <p style="margin-top: 20px; font-size:0.8rem; color: #6688aa;">
+            <i class="fa-regular fa-file-lines"></i> Descarga pistas, playlists, álbumes ·
+        </p>
+    </div>
+
+    <!-- siguiente sección: características con un tono más azul (reemplazo de las antiguas) -->
+    <h2 class="features-title"><span>utilidades</span> integradas</h2>
+
+    <div class="feature-card">
+        <h3><i class="fa-brands fa-spotify" style="color:#1DB954;"></i> RX Music</h3>
+        <p>Descarga directa canciones de Spotify con metadatos completos, con solo poner el nombre del artista o album.</p>
+        <img src="https://placehold.co/600x400/0a2a44/1E88E5?text=Spotify+Downloader+RX" alt="rx scrapper music preview">
+    </div>
+
+    <footer>
+        <a href="https://discord.gg/NYbUumPCU" class="social-link">
+            <i class="fa-brands fa-discord"></i>
+        </a>
+        <div style="font-size: 0.8rem; opacity: 0.6;">© 2026 RXSCRAPPER</div>
+        <div class="legal-links">
+        </div>
+    </footer>
+
+    <!-- ///
+    ____  __  __                         
+/// |  _ \ \ \/ /__  __                   
+/// | |_) | \  / \ \/ /                   
+/// |  _ <  /  \  >  <                    
+/// |_| \_\/_/\_\/_/\_\              _    
+/// | | | |_ __   ___ _ __ __ _  ___| | __
+/// | | | | '_ \ / __| '__/ _` |/ __| |/ /
+/// | |_| | | | | (__| | | (_| | (__|   < 
+///  \___/|_| |_|\___|_|  \__,_|\___|_|\_\
+///   ___  __| | |                        
+///  / _ \/ _` | |                        
+/// |  __/ (_| |_|                        
+///  \___|\__,_(_)                         -->
+</body>
+</html>
